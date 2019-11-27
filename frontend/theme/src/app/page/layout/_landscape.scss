@@ -1,0 +1,31 @@
+@import "../../grid";
+
+#app {
+  @include flexbox;
+  @include flex-direction(row);
+  @include flex-wrap(nowrap);
+
+  min-height: 100%;
+
+  #menu-wrapper {
+    @include flex-basis(18rem);
+    @include flex-shrink(0);
+    @include flex-grow(0);
+  }
+
+  #content-box {
+    @include flex-basis(auto);
+    max-height: 100vh;
+    overflow: auto;
+
+    padding-left: 2rem;
+    padding-right: 3rem;
+    line-height: 1.48;
+  }
+
+  hr.section-separator {
+    @include flex-basis(1px);
+
+    margin: 2.5% 0 2.5% 0.5rem;
+  }
+}

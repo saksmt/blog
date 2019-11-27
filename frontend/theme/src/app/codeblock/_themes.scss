@@ -1,0 +1,11 @@
+@import "../themes-toolkit";
+
+@import "themes/all";
+
+#{$dark} {
+  @import "themes/dark";
+}
+
+#{$light} {
+  @import "themes/light";
+}

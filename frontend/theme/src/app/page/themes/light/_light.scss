@@ -1,0 +1,15 @@
+@import "../../../themes-toolkit";
+
+#app {
+  background-color: $light-colors-bg;
+  color: $light-colors-fg;
+  text-decoration: none;
+  font-style: normal;
+}
+
+a:focus, a:active {
+  color: $light-colors-focus-fg;
+  text-decoration: underline;
+  border: none;
+  outline: none;
+}

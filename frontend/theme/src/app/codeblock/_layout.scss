@@ -1,0 +1,17 @@
+@import "../grid";
+
+.codeblock {
+  @include cols;
+  @include center;
+
+  code {
+    @include col(9 / 10);
+    min-width: 50rem;
+
+    @include start;
+
+    pre {
+      display: block;
+    }
+  }
+}

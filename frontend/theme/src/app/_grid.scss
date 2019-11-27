@@ -1,0 +1,128 @@
+@import "~sass-flex-mixin/_flex";
+
+// Set a margin for the container sides.
+$outer-margin: 2rem !default;
+
+$flexboxgrid-max-width: 1200px !default;
+
+// impl:
+
+@mixin wrapper {
+  box-sizing: border-box;
+  max-width: $flexboxgrid-max-width;
+  margin: 0 auto;
+}
+
+@mixin container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $outer-margin;
+  padding-left: $outer-margin;
+}
+
+@mixin flexbox-common {
+  box-sizing: border-box;
+}
+
+@mixin shrinks {
+  @include flex-shrink(1);
+  @include flex-grow(1);
+}
+
+// rows layout
+
+@mixin rows {
+  box-sizing: border-box;
+  @include flexbox();
+  @include flex(0, 1, auto);
+  @include flex-direction(column);
+  @include flex-wrap(wrap);
+  height: 100%;
+}
+
+@mixin row($proportion/*, $offset: 0*/) {
+  @include flexbox-common;
+  @include flex-basis(100% * $proportion);
+  max-height: 100% * $proportion;
+  //margin-left: 100% / $grid-columns * $offset;
+}
+
+@mixin auto-row {
+  @include flexbox-common;
+  @include flex-basis(auto);
+}
+
+@mixin rows-reverse {
+  @include flex-direction(row-reverse);
+}
+
+// columns layout
+
+@mixin cols {
+  box-sizing: border-box;
+  @include flexbox();
+  @include flex(0, 1, auto);
+  @include flex-direction(row);
+  @include flex-wrap(wrap);
+}
+
+@mixin col($proportion/*, $offset: 0*/) {
+  @include flexbox-common;
+  @include flex-basis(100% * $proportion);
+  max-width: 100% * $proportion;
+  //margin-left: 100% / $grid-columns * $offset;
+}
+
+@mixin auto-col {
+  @include flexbox-common;
+  @include flex-basis(auto);
+}
+
+@mixin cols-reverse {
+  @include flex-direction(column-reverse);
+}
+
+// common
+
+@mixin start {
+  @include justify-content(flex-start);
+  text-align: start;
+}
+
+@mixin center {
+  @include justify-content(center);
+  text-align: center;
+}
+
+@mixin end {
+  @include justify-content(flex-end);
+  text-align: end;
+}
+
+@mixin top {
+  @include align-items(flex-start);
+}
+
+@mixin middle {
+  @include align-items(center);
+}
+
+@mixin bottom {
+  @include align-items(flex-end);
+}
+
+@mixin around {
+  @include justify-content(space-around);
+}
+
+@mixin between {
+  @include justify-content(space-between);
+}
+
+@mixin first {
+  order: -1;
+}
+
+@mixin last {
+  order: 1;
+}

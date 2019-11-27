@@ -1,0 +1,9 @@
+@import "layout/all-screens";
+
+@media screen and (orientation: landscape) {
+  @import "layout/landscape";
+}
+
+@media screen and (orientation: portrait) {
+  @import "layout/portrait";
+}

@@ -1,0 +1,9 @@
+@import "themes-toolkit";
+
+#{$dark} {
+  @import "hljs/dark";
+}
+
+#{$light} {
+  @import "hljs/light";
+}

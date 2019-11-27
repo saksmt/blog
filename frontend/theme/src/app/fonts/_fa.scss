@@ -1,0 +1,23 @@
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+
+
+@mixin brand-icon($code) {
+  @extend %fa-icon;
+  @extend .fab;
+  &:before {
+    content: fa-content($code);
+  }
+}
+
+@mixin standard-icon($code) {
+  @extend %fa-icon;
+  @extend .fas;
+
+  &:before {
+    content: fa-content($code);
+  }
+}

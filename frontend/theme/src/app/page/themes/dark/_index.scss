@@ -1,0 +1,15 @@
+@import "../../../themes-toolkit";
+
+#app {
+  background-color: $dark-colors-bg;
+  color: $dark-colors-fg;
+  text-decoration: none;
+  font-style: normal;
+}
+
+a:focus, a:active {
+  color: $dark-colors-focus-fg;
+  border: none;
+  outline: none;
+  text-decoration: underline;
+}

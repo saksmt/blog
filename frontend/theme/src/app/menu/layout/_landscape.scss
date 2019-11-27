@@ -1,0 +1,73 @@
+@import "../../grid";
+
+#menu-wrapper {
+  @include cols;
+  @include middle;
+
+  #menu-container {
+    @include auto-col;
+    @include shrinks;
+    @include rows;
+    height: 100%;
+    width: 100%;
+
+    #main-menu {
+      @include auto-row;
+      @include shrinks;
+
+      li {
+        list-style: none;
+      }
+
+      #navigation-menu {
+        a {
+          display: block;
+          width: 100%;
+          padding: 1rem 2rem;
+        }
+      }
+
+      #contacts-menu {
+        @include cols;
+        @include center;
+
+        li {
+          @include auto-col;
+
+          padding: 0.5rem 1rem;
+          a {
+            padding: 0.5rem 1rem;
+          }
+        }
+      }
+
+      & > hr {
+        width: 70%;
+        max-width: 70%;
+        height: 1px;
+        max-height: 1px;
+        margin: 1.5rem auto;
+      }
+    }
+  }
+
+  h1.menu-home a {
+    display: block;
+    width: 100%;
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  #theme-menu {
+    @include middle;
+    @include around;
+    @include cols;
+
+    span {
+      @include auto-col;
+
+      padding: 1rem;
+    }
+    margin-bottom: 1rem;
+  }
+}

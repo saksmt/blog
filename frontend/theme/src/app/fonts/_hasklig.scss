@@ -1,0 +1,139 @@
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig ExtraLight'), local('Hasklig-ExtraLight'),
+  url('hasklig/Hasklig-ExtraLight.woff2') format('woff2'),
+  url('hasklig/Hasklig-ExtraLight.woff') format('woff'),
+  url('hasklig/Hasklig-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig Black'), local('Hasklig-Black'),
+  url('hasklig/Hasklig-Black.woff2') format('woff2'),
+  url('hasklig/Hasklig-Black.woff') format('woff'),
+  url('hasklig/Hasklig-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig Medium'), local('Hasklig-Medium'),
+  url('hasklig/Hasklig-Medium.woff2') format('woff2'),
+  url('hasklig/Hasklig-Medium.woff') format('woff'),
+  url('hasklig/Hasklig-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig Semibold Italic'), local('Hasklig-SemiboldIt'),
+  url('hasklig/Hasklig-SemiboldIt.woff2') format('woff2'),
+  url('hasklig/Hasklig-SemiboldIt.woff') format('woff'),
+  url('hasklig/Hasklig-SemiboldIt.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig Semibold'), local('Hasklig-Semibold'),
+  url('hasklig/Hasklig-Semibold.woff2') format('woff2'),
+  url('hasklig/Hasklig-Semibold.woff') format('woff'),
+  url('hasklig/Hasklig-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig Bold'), local('Hasklig-Bold'),
+  url('hasklig/Hasklig-Bold.woff2') format('woff2'),
+  url('hasklig/Hasklig-Bold.woff') format('woff'),
+  url('hasklig/Hasklig-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig Bold Italic'), local('Hasklig-BoldIt'),
+  url('hasklig/Hasklig-BoldIt.woff2') format('woff2'),
+  url('hasklig/Hasklig-BoldIt.woff') format('woff'),
+  url('hasklig/Hasklig-BoldIt.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig Light'), local('Hasklig-Light'),
+  url('hasklig/Hasklig-Light.woff2') format('woff2'),
+  url('hasklig/Hasklig-Light.woff') format('woff'),
+  url('hasklig/Hasklig-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig ExtraLight Italic'), local('Hasklig-ExtraLightIt'),
+  url('hasklig/Hasklig-ExtraLightIt.woff2') format('woff2'),
+  url('hasklig/Hasklig-ExtraLightIt.woff') format('woff'),
+  url('hasklig/Hasklig-ExtraLightIt.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig Light Italic'), local('Hasklig-LightIt'),
+  url('hasklig/Hasklig-LightIt.woff2') format('woff2'),
+  url('hasklig/Hasklig-LightIt.woff') format('woff'),
+  url('hasklig/Hasklig-LightIt.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig Black Italic'), local('Hasklig-BlackIt'),
+  url('hasklig/Hasklig-BlackIt.woff2') format('woff2'),
+  url('hasklig/Hasklig-BlackIt.woff') format('woff'),
+  url('hasklig/Hasklig-BlackIt.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig Medium Italic'), local('Hasklig-MediumIt'),
+  url('hasklig/Hasklig-MediumIt.woff2') format('woff2'),
+  url('hasklig/Hasklig-MediumIt.woff') format('woff'),
+  url('hasklig/Hasklig-MediumIt.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig'), local('Hasklig-Regular'),
+  url('hasklig/Hasklig-Regular.woff2') format('woff2'),
+  url('hasklig/Hasklig-Regular.woff') format('woff'),
+  url('hasklig/Hasklig-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hasklig';
+  src: local('Hasklig Italic'), local('Hasklig-It'),
+  url('hasklig/Hasklig-It.woff2') format('woff2'),
+  url('hasklig/Hasklig-It.woff') format('woff'),
+  url('hasklig/Hasklig-It.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}

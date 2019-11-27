@@ -1,0 +1,50 @@
+@import "../../fonts";
+
+#menu-wrapper {
+  hr {
+    border: 0;
+  }
+
+  #menu-container {
+    menu {
+      margin: 0;
+      padding: 0;
+    }
+
+    hr {
+      border: 0;
+    }
+
+    #contacts-menu {
+      li {
+        font-size: 2rem;
+      }
+
+      .github {
+        @include brand-icon($fa-var-github-alt)
+      }
+
+      .linkedin {
+        @include brand-icon($fa-var-linkedin-in)
+      }
+
+      .telegram {
+        @include brand-icon($fa-var-telegram-plane)
+      }
+    }
+  }
+
+  #theme-menu {
+    span {
+      font-size: 1.5rem;
+    }
+
+    #choose-darkness {
+      @include standard-icon($fa-var-moon);
+    }
+
+    #choose-light {
+      @include standard-icon($fa-var-sun);
+    }
+  }
+}

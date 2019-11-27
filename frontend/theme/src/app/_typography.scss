@@ -1,0 +1,17 @@
+body {
+  font-family: "Hasklig", "Source Code Pro", "Arial", sans-serif;
+  font-size: 14px;
+}
+
+a, a:visited {
+  color: inherit;
+  background-color: inherit;
+  text-decoration: inherit;
+  font-style: inherit;
+}
+
+* {
+  $transition-duration: 100ms;
+
+  transition: background-color $transition-duration ease-in, color $transition-duration ease-in;
+}

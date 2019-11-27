@@ -1,0 +1,35 @@
+@import "../../themes-toolkit";
+
+#menu-container {
+  hr {
+    background-color: #aaa;
+    box-shadow: #aaa 0 0 1px;
+  }
+
+  li, h1 {
+    &:hover {
+      color: $dark-colors-accent-fg;
+    }
+  }
+
+  #navigation-menu {
+    .menu-selected {
+      color: $dark-colors-active-fg;
+    }
+  }
+
+  #theme-menu {
+    span:hover {
+      color: $dark-colors-accent-fg !important;
+    }
+
+    #choose-darkness {
+      color: $dark-colors-active-fg;
+    }
+  }
+}
+
+#menu-wrapper hr {
+  background-color: $dark-colors-separator;
+  box-shadow: $dark-colors-separator 0 0 1px;
+}
