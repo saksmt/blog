@@ -1,27 +1,28 @@
-package dev.saksmt.blog.frontend.components
+package dev.saksmt.blog.frontend.components.menu
 
 import dev.saksmt.blog.frontend.core.dom.Renderable
-import dev.saksmt.blog.frontend.{Menu, PageLocation}
+import dev.saksmt.blog.frontend.core.routing.PageLocation
+import dev.saksmt.blog.frontend.core.routing.navigation.NavigationSchema
 
-class MenuComponent(menu: Menu) {
+class MenuComponent(menu: Menu, navigationSchema: NavigationSchema) {
   import menu.mainPage
 
-  def build(currentLocation: Option[PageLocation]): Renderable = (
+  def build(currentLocation: PageLocation): Renderable = (
     <h1 class="menu-home">
-      <a href={mainPage.page.location.fold("#")(_.href)}>{mainPage.name}</a>
+      <a href={navigationSchema.buildUri(mainPage.location)}>{mainPage.name}</a>
     </h1>
     <menu id="navigation-menu">
       {
       menu.sections.map { it =>
         val selectedClass =
-          if (currentLocation.map(_.sectionPagePath) == it.page.location.map(_.sectionPagePath)) {
+          if (currentLocation.sectionPagePath == it.location.sectionPagePath) {
             "menu-selected"
           } else {
             ""
           }
 
         <li>
-          <a href={it.page.location.fold("#")(_.href)} class={selectedClass}>{it.name}</a>
+          <a href={navigationSchema.buildUri(it.location)} class={selectedClass}>{it.name}</a>
         </li>
       }
       }
