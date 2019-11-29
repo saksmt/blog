@@ -1,12 +1,22 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const sourcemaps = require('./sourcemaps');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/main/js/index.js',
     mode: 'development',
     output: {
-        path: path.resolve(__dirname, 'target'),
-        filename: 'app.js'
+        path: path.resolve(__dirname, 'target', "web"),
+        filename: 'app.js',
+        devtoolModuleFilenameTemplate: (f) => {
+            if (f.resourcePath.startsWith("http://") ||
+                f.resourcePath.startsWith("https://") ||
+                f.resourcePath.startsWith("file://")) {
+                return f.resourcePath;
+            } else {
+                return "webpack://" + f.namespace + "/" + f.resourcePath;
+            }
+        }
     },
     module: {
         rules: [{
@@ -35,7 +45,7 @@ module.exports = {
         },
         {
             test: /\.m?js$/,
-            exclude: /(node_modules|bower_components)/,
+            exclude: /(node_modules|bower_components|scala.js)/,
             use: {
                 loader: 'babel-loader',
                 options: {
@@ -53,6 +63,11 @@ module.exports = {
                 'file-loader?name=images/[name].[ext]',
                 'image-webpack-loader'
             ]
+        },
+        {
+            test: /scala\.js$/,
+            use: path.resolve(__dirname, 'scala-sourcemaps.js'),
+            enforce: "pre"
         }]
     },
     plugins: [

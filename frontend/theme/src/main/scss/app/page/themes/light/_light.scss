@@ -5,6 +5,12 @@
   color: $light-colors-fg;
   text-decoration: none;
   font-style: normal;
+
+  hr.section-separator {
+    background-color: #aaa;
+    box-shadow: #aaa 0 0 1px;
+    border: 0;
+  }
 }
 
 a:focus, a:active {
