@@ -1,0 +1,4 @@
+**
+
+!src/main/nginx/**
+!target/prod-web/**

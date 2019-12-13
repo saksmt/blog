@@ -9,7 +9,9 @@ class MenuComponent(menu: Menu, navigationSchema: NavigationSchema) {
 
   def build(currentLocation: PageLocation): Renderable = (
     <h1 class="menu-home">
-      <a href={navigationSchema.buildUri(mainPage.location)}>{mainPage.name}</a>
+      {navigationSchema.buildLink(mainPage.location) {
+        <a>{mainPage.name}</a>
+      }}
     </h1>
     <menu id="navigation-menu">
       {
@@ -22,7 +24,9 @@ class MenuComponent(menu: Menu, navigationSchema: NavigationSchema) {
           }
 
         <li>
-          <a href={navigationSchema.buildUri(it.location)} class={selectedClass}>{it.name}</a>
+          {navigationSchema.buildLink(it.location) {
+            <a class={selectedClass}>{it.name}</a>
+          }}
         </li>
       }
       }

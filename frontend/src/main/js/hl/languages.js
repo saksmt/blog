@@ -1,4 +1,4 @@
-import hljs from 'highlight.js/lib/highlight'
+import { registerLanguage } from 'highlight.js/lib/highlight'
 
 import javascript from 'highlight.js/lib/languages/javascript'
 import haskell from 'highlight.js/lib/languages/haskell'
@@ -9,15 +9,11 @@ import bash from 'highlight.js/lib/languages/bash'
 import sql from 'highlight.js/lib/languages/sql'
 import dockerfile from 'highlight.js/lib/languages/dockerfile'
 
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('haskell', haskell);
-hljs.registerLanguage('scala', scala);
-hljs.registerLanguage('nix', nix);
-hljs.registerLanguage('yaml', yaml);
-hljs.registerLanguage('bash', bash);
-hljs.registerLanguage('sql', sql);
-hljs.registerLanguage('dockerfile', dockerfile);
-
-export {
-    hljs
-};
+registerLanguage('javascript', javascript);
+registerLanguage('haskell', haskell);
+registerLanguage('scala', scala);
+registerLanguage('nix', nix);
+registerLanguage('yaml', yaml);
+registerLanguage('bash', bash);
+registerLanguage('sql', sql);
+registerLanguage('dockerfile', dockerfile);

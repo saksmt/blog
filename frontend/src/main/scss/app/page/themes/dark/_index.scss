@@ -13,9 +13,19 @@
   }
 }
 
-a:focus, a:active {
-  color: $dark-colors-focus-fg;
-  border: none;
-  outline: none;
-  text-decoration: underline;
+#content {
+  a:focus, a:active {
+    color: $dark-colors-focus-fg;
+    border: none;
+    outline: none;
+    text-decoration: underline;
+  }
+
+  a {
+    color: $dark-colors-link-fg;
+
+    &:hover {
+      color: $dark-colors-accent-fg;
+    }
+  }
 }

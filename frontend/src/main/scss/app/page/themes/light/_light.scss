@@ -13,9 +13,19 @@
   }
 }
 
-a:focus, a:active {
-  color: $light-colors-focus-fg;
-  text-decoration: underline;
-  border: none;
-  outline: none;
+#content {
+  a:focus, a:active {
+    color: $light-colors-focus-fg;
+    text-decoration: underline;
+    border: none;
+    outline: none;
+  }
+
+  a {
+    color: $light-colors-link-fg;
+
+    &:hover {
+      color: $light-colors-accent-fg;
+    }
+  }
 }

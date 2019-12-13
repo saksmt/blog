@@ -9,6 +9,10 @@ object dependencies {
 
     val macwire = "2.3.3"
     val scribe = "2.7.3"
+    val enumeratum = "1.5.13"
+
+    val circe = "0.11.1"
+    val enumeratumCirce = "1.5.22"
 
     val jsdom = "0.9.7"
     val mhtml = "0.4.0-RC1"
@@ -26,4 +30,14 @@ object dependencies {
   )
 
   val macwire = Dep("com.softwaremill.macwire" %% "macros" % versions.macwire)
+
+  val circe = Dep(compilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full) +: Seq(
+    "io.circe" %% "circe-core",
+    "io.circe" %% "circe-generic",
+    "io.circe" %% "circe-parser"
+  ).map(_ % versions.circe) : _*)
+
+  val enumeratum = Dep(
+    "com.beachape" %% "enumeratum" % versions.enumeratum
+  )
 }

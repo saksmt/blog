@@ -1,10 +1,10 @@
-import { hljs } from './languages';
+import { highlight } from 'highlight.js/lib/highlight'
 import { nodeStream, mergeStreams } from './_copy-paste';
 
 export const highlightCode = (block, language, tabSize) => {
     const tabReplacement = ' '.repeat(tabSize);
     const text = block.textContent;
-    const result = hljs.highlight(language, text, true);
+    const result = highlight(language, text, true);
     const originalStream = nodeStream(block);
 
     if (originalStream.length > 0) {

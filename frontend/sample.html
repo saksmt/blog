@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>@saksmt personal page // </title>
-    <script type="application/javascript" charset="UTF-8" src="target/web/app.js"></script>
-    <link rel="stylesheet" href="target/web/main.css">
+    <script type="application/javascript" charset="UTF-8">
+        window.appConfig = {
+            routingType: "hash",
+            baseUri: ""
+        }
+    </script>
+    <script type="application/javascript" charset="UTF-8" src="target/prod-web/chunk-vendors~main.js"></script>
+    <script type="application/javascript" charset="UTF-8" src="target/prod-web/app.js"></script>
+<!--    <script type="application/javascript" charset="UTF-8" src="target/prod-web/app-main-71c585845c5fd4e554a7.js"></script>-->
+    <link rel="stylesheet" href="target/prod-web/main.css">
 </head>
 <body>
 <input class="hide" name="theme" id="dark" type="radio" value="dark" checked>

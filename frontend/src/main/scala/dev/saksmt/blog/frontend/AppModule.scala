@@ -7,16 +7,19 @@ import dev.saksmt.blog.frontend.sections.main.wiring.impl.MainSectionModuleImpl
 import dev.saksmt.blog.frontend.wiring.impl.{DomModuleImpl, NavigationModuleImpl}
 import com.softwaremill.macwire._
 import dev.saksmt.blog.frontend.components.menu.{Menu, MenuComponent, MenuItem}
+import dev.saksmt.blog.frontend.config.AppConfig
 import dev.saksmt.blog.frontend.core.routing.PageLocation
 import dev.saksmt.blog.frontend.sections.blog.wiring.impl.BlogSectionModuleImpl
 import dev.saksmt.blog.frontend.sections.projects.wiring.impl.ProjectsSectionModuleImpl
 import dev.saksmt.blog.frontend.staticPages.error.NotFoundPage
+import dev.saksmt.blog.frontend.wiring.ConfigModule
 import mhtml.mount
 
 import scala.xml.Atom
 
-class AppModule
+class AppModule(override val config: AppConfig)
   extends DomModuleImpl
+    with ConfigModule
     with NavigationModuleImpl
 
     // mixin order affect position in menu
@@ -39,6 +42,7 @@ class AppModule
 
   def run(): Unit = {
     val currentLocation = navigationSchema.initialize()
+    scribe.info("Navigation schema initialized")
     val currentPage = currentLocation.map(sectionRouter.router.applyOrElse(_, (_: PageLocation) => NotFoundPage))
 
     val menuElement = document.getElementById("main-menu")

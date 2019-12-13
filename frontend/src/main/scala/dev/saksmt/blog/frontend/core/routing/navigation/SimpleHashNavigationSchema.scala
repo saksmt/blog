@@ -4,8 +4,20 @@ import dev.saksmt.blog.frontend.core.routing.PageLocation
 import mhtml.Var
 import org.scalajs.dom.Window
 
+import scala.xml.{Elem, UnprefixedAttribute}
+
 class SimpleHashNavigationSchema(window: Window) extends NavigationSchema {
-  override def buildUri(location: PageLocation): String = s"#${location.sectionPagePath}${location.path}".replaceAllLiterally("//", "/")
+  override def buildLink(location: PageLocation)(link: Elem): Elem = link.copy(
+    attributes1 = UnprefixedAttribute[String]("href", buildUri(location), link.attributes1)
+  )
+
+  override def initialize(): Var[PageLocation] = {
+    val state = Var(buildLocation(window.location.hash))
+    window.onhashchange = _ => state.update(_ => buildLocation(window.location.hash))
+    state
+  }
+
+  private def buildUri(location: PageLocation): String = s"#${location.sectionPagePath}${location.path}".replaceAllLiterally("//", "/")
 
   private def buildLocation(rawUri: String): PageLocation = {
     val uri = rawUri.stripPrefix("#")
@@ -24,12 +36,5 @@ class SimpleHashNavigationSchema(window: Window) extends NavigationSchema {
     scribe.info(s"Parsed: section=$section; page=$page")
 
     PageLocation(section, page)
-  }
-
-
-  override def initialize(): Var[PageLocation] = {
-    val state = Var(buildLocation(window.location.hash))
-    window.onhashchange = _ => state.update(_ => buildLocation(window.location.hash))
-    state
   }
 }

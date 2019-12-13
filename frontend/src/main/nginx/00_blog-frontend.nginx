@@ -1,0 +1,20 @@
+map $http_accept_encoding $compression_algo {
+  default "gz";
+
+  "~br" "br";
+}
+
+
+
+server {
+  listen 80;
+
+  charset utf-8;
+
+  location / {
+    root /usr/share/blog/html;
+    index index.html;
+
+    try_files $compression_algo/$uri $uri /index.html;
+  }
+}

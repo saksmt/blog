@@ -7,14 +7,25 @@
   }
 
   li, h1 {
-    &:hover {
+    &:hover, a:hover {
       color: $light-colors-accent-fg;
+    }
+
+    a:focus, a:active {
+      color: $light-colors-focus-fg;
+      text-decoration: underline;
+      border: none;
+      outline: none;
     }
   }
 
   #navigation-menu {
     .menu-selected {
       color: $light-colors-active-fg;
+
+      &:hover, a:hover {
+        color: $light-colors-accent-fg;
+      }
     }
   }
 

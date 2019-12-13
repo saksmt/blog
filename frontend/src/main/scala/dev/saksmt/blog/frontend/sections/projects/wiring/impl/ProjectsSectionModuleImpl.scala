@@ -5,12 +5,12 @@ import dev.saksmt.blog.frontend.core.Page
 import dev.saksmt.blog.frontend.core.section.Section
 import dev.saksmt.blog.frontend.sections.projects.sections.ProjectsSection
 import dev.saksmt.blog.frontend.sections.projects.wiring.ProjectsSectionModule
-import dev.saksmt.blog.frontend.staticPages.error.NotFoundPage
+import dev.saksmt.blog.frontend.staticPages.error.WIPPage
 import com.softwaremill.macwire._
 
 @silent("never used")
 trait ProjectsSectionModuleImpl extends ProjectsSectionModule {
-  private val rootPage: Page = NotFoundPage
+  private val rootPage: Page = WIPPage
 
   override val projectsSection: Section = wire[ProjectsSection]
 }

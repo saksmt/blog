@@ -35,6 +35,45 @@ export function mergeStreams(original, highlighted, value) {
     var result = '';
     var nodeStack = [];
 
+    function selectStream() {
+        if (!original.length || !highlighted.length) {
+            return original.length ? original : highlighted;
+        }
+        if (original[0].offset !== highlighted[0].offset) {
+            return (original[0].offset < highlighted[0].offset) ? original : highlighted;
+        }
+
+        /*
+        To avoid starting the stream just before it should stop the order is
+        ensured that original always starts first and closes last:
+
+        if (event1 == 'start' && event2 == 'start')
+          return original;
+        if (event1 == 'start' && event2 == 'stop')
+          return highlighted;
+        if (event1 == 'stop' && event2 == 'start')
+          return original;
+        if (event1 == 'stop' && event2 == 'stop')
+          return highlighted;
+
+        ... which is collapsed to:
+        */
+        return highlighted[0].event === 'start' ? original : highlighted;
+    }
+
+    function open(node) {
+        function attr_str(a) {return ' ' + a.nodeName + '="' + escape(a.value).replace('"', '&quot;') + '"';}
+        result += '<' + tag(node) + [].map.call(node.attributes, attr_str).join('') + '>';
+    }
+
+    function close(node) {
+        result += '</' + tag(node) + '>';
+    }
+
+    function render(event) {
+        (event.event === 'start' ? open : close)(event.node);
+    }
+
     while (original.length || highlighted.length) {
         var stream = selectStream();
         result += escape(value.substring(processed, stream[0].offset));
@@ -62,46 +101,6 @@ export function mergeStreams(original, highlighted, value) {
         }
     }
     return result + escape(value.substr(processed));
-}
-
-
-function selectStream() {
-    if (!original.length || !highlighted.length) {
-        return original.length ? original : highlighted;
-    }
-    if (original[0].offset !== highlighted[0].offset) {
-        return (original[0].offset < highlighted[0].offset) ? original : highlighted;
-    }
-
-    /*
-    To avoid starting the stream just before it should stop the order is
-    ensured that original always starts first and closes last:
-
-    if (event1 == 'start' && event2 == 'start')
-      return original;
-    if (event1 == 'start' && event2 == 'stop')
-      return highlighted;
-    if (event1 == 'stop' && event2 == 'start')
-      return original;
-    if (event1 == 'stop' && event2 == 'stop')
-      return highlighted;
-
-    ... which is collapsed to:
-    */
-    return highlighted[0].event === 'start' ? original : highlighted;
-}
-
-function open(node) {
-    function attr_str(a) {return ' ' + a.nodeName + '="' + escape(a.value).replace('"', '&quot;') + '"';}
-    result += '<' + tag(node) + [].map.call(node.attributes, attr_str).join('') + '>';
-}
-
-function close(node) {
-    result += '</' + tag(node) + '>';
-}
-
-function render(event) {
-    (event.event === 'start' ? open : close)(event.node);
 }
 
 function escape(value) {
