@@ -27,6 +27,6 @@ class BuiltWithPage extends Page("Built with") {
       <li>My poor VDS handling all this stuff (<a href="https://melbicom.net/">Melbicom</a>)</li>
     </ul>
     <p></p>
-    <p>P.S. sources of this site can be found in my <a href="https://github.com/saksmt/blog">github</a></p>
+    <p>P.S. sources of this site can be found in my <a href="https://github.com/saksmt/blog">github</a>, there is also <a href="https://github.com/saksmt/saksmt.dev-server-cluster">repository</a> with config for the whole cluster</p>
   )
 }
