@@ -5,23 +5,17 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const CompressionPlugin = require('compression-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 
 const devConfig = {
-    entry: './src/main/js/index.js',
+    entry: {
+        config: './src/main/js/default.dev.config.js',
+        app: './src/main/js/index.js'
+    },
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'target', "web"),
-        filename: 'app.js',
-        devtoolModuleFilenameTemplate: (f) => {
-            if (f.resourcePath.startsWith("http://") ||
-                f.resourcePath.startsWith("https://") ||
-                f.resourcePath.startsWith("file://")) {
-                return f.resourcePath;
-            } else {
-                return "webpack://" + f.namespace + "/" + f.resourcePath;
-            }
-        }
+        filename: '[name].js',
+        publicPath: './'
     },
     module: {
         rules: [{
@@ -33,7 +27,7 @@ const devConfig = {
                 {
                     loader: "css-loader",
                     options: {
-                        sourceMap: true
+                        sourceMap: false
                     }
                 },
                 "resolve-url-loader",
@@ -47,56 +41,47 @@ const devConfig = {
         }, {
             test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
             use: 'url-loader?limit=10000',
-        },
-            {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components|scala.js)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
-            },
-            {
-                test: /\.(ttf|eot|svg|woff|woff2)(\?[\s\S]+)?$/,
-                use: 'file-loader?name=fonts/[contenthash].[ext]',
-            },
-            {
-                test: /\.(jpe?g|png|gif)$/i,
-                use: [
-                    'file-loader?name=images/[name].[ext]',
-                    'image-webpack-loader'
-                ]
-            },
-            {
-                test: /scala\.js$/,
-                use: path.resolve(__dirname, 'scala-sourcemaps.js'),
-                enforce: "pre"
-            }]
+        }, {
+            test: /\.(ttf|eot|svg|woff|woff2)(\?[\s\S]+)?$/,
+            use: 'file-loader?name=fonts/[contenthash].[ext]',
+        }, {
+            test: /\.(jpe?g|png|gif)$/i,
+            use: [
+                'file-loader?name=images/[name]-[contenthash].[ext]',
+                'image-webpack-loader'
+            ]
+        }]
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: './[name].css',
             chunkFilename: './[id].css',
         }),
-        new CopyPlugin([
-            { from: 'src/main/js/default.dev.config.js', to: './config.js' }
-        ])
+        new HTMLWebpackPlugin({
+            filename: "index.html",
+            template: "src/main/html/index.html",
+            inject: 'head',
+            meta: {
+                charset: 'UTF-8'
+            }
+        })
     ],
     devtool: 'inline-sourcemap'
 };
 
 const prodConfig = {
-    entry: './src/main/js/index.js',
+    entry: {
+        config: './src/main/js/default.prod.config.js',
+        app: './src/main/js/index.js'
+    },
     mode: 'production',
     output: {
         path: path.resolve(__dirname, 'target', "prod-web"),
-        filename: 'app-[contenthash].js',
+        filename: '[name]-[contenthash].js',
         publicPath: '/'
     },
     optimization: {
-        minimizer: [
+        /*minimizer: [
             new TerserPlugin({
                 terserOptions: {
                     mangle: {
@@ -114,7 +99,7 @@ const prodConfig = {
                     toplevel: true
                 }
             })
-        ],
+        ],*/
         concatenateModules: true
     },
     module: {
@@ -188,10 +173,7 @@ const prodConfig = {
             threshold: 10240,
             minRatio: 0.8,
             deleteOriginalAssets: false,
-        }),
-        new CopyPlugin([
-            { from: 'src/main/js/default.prod.config.js', to: './config.js' }
-        ])
+        })
     ],
     devtool: 'sourcemap'
 };

@@ -33,7 +33,7 @@ class AboutPage(navigationSchema: NavigationSchema) extends Page("About") {
       <li>C/C++</li>
       <li><a href="https://nixos.org/nix/">Nix</a> (yea, that's a language, checkout the link!)</li>
       <li>Lua (hate it, but <a href="https://awesomewm.org/">my window manager</a> is written in it, so checkout projects page, maybe I've finally managed to finish my very own window manager)</li>
-      <li>Python (totally hate it too, but sometimes need to fix something in <a href="https://home-assistant.io">homeassistant</a></li>
+      <li>Python (totally hate it too, but sometimes need to fix something in <a href="https://home-assistant.io">homeassistant</a>)</li>
     </ul>
     <p></p>
     <p>If you need any proofs about lists above you should check:</p>

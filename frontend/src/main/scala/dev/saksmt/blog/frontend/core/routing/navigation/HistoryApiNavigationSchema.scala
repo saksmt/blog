@@ -1,4 +1,5 @@
 package dev.saksmt.blog.frontend.core.routing.navigation
+
 import dev.saksmt.blog.frontend.core.routing.PageLocation
 import mhtml.Var
 import org.scalajs.dom.raw.Event
@@ -11,7 +12,7 @@ class HistoryApiNavigationSchema(window: Window, baseUri: String) extends Naviga
 
   override def buildLink(location: PageLocation)(link: Elem): Elem = {
     val uri = buildUri(location)
-    link.copy(attributes1 = UnprefixedAttribute(
+    Elem(link.prefix, link.label, UnprefixedAttribute(
       "href", uri,
       UnprefixedAttribute(
         "mhtml-onmount", (node: Node) => {
@@ -25,7 +26,7 @@ class HistoryApiNavigationSchema(window: Window, baseUri: String) extends Naviga
           })
         }, link.attributes1
       )
-    ))
+    ), link.scope, link.minimizeEmpty, link.child:_*)
   }
   override def initialize(): Var[PageLocation] = {
     window.addEventListener("popstate", (_: Event) => {

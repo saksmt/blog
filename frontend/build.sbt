@@ -1,6 +1,5 @@
 import common._
 import dependencies._
-import org.scalajs.core.tools.linker.backend.OutputMode
 
 val webpackKey = TaskKey[Unit]("webpack", "")
 val webpackProdKey = TaskKey[Unit]("webpackProd", "")
@@ -16,17 +15,25 @@ lazy val frontend = mkProject("frontend", ".")
       "com.outr" %%% "scribe" % versions.scribe,
       "org.scala-js" %%% "scalajs-dom" % versions.jsdom,
       "in.nvilla" %%% "monadic-html" % versions.mhtml,
-      "com.beachape" %%% "enumeratum" % versions.enumeratum exclude("org.scala-lang.modules", "scala-xml")
+      "com.beachape" %%% "enumeratum" % versions.enumeratum
     ),
 
-    scalaJSLinkerConfig ~= { _
-      .withModuleKind(ModuleKind.ESModule)
+    scalaJSLinkerConfig in fullOptJS ~= { _
+      .withModuleKind(ModuleKind.NoModule)
       .withClosureCompiler(true)
       .withOptimizer(true)
       .withSourceMap(true)
     },
 
-    scalaJSOptimizerOptions ~= { _.withUseClosureCompiler(true) },
+    scalaJSLinkerConfig in fastOptJS ~= { _
+      .withModuleKind(ModuleKind.NoModule)
+      .withClosureCompiler(true)
+      .withOptimizer(true)
+      .withSourceMap(true)
+    },
+
+    scalaJSOptimizerOptions in fullOptJS ~= { _.withUseClosureCompiler(true) },
+    scalaJSOptimizerOptions in fastOptJS ~= { _.withUseClosureCompiler(true) },
 
     artifactPath in(Compile, fastOptJS) := target.value / "scala.js",
     artifactPath in(Compile, fullOptJS) := target.value / "scala.js",

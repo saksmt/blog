@@ -7,8 +7,13 @@ import org.scalajs.dom.Window
 import scala.xml.{Elem, UnprefixedAttribute}
 
 class SimpleHashNavigationSchema(window: Window) extends NavigationSchema {
-  override def buildLink(location: PageLocation)(link: Elem): Elem = link.copy(
-    attributes1 = UnprefixedAttribute[String]("href", buildUri(location), link.attributes1)
+  override def buildLink(location: PageLocation)(link: Elem): Elem = Elem(
+    link.prefix,
+    link.label,
+    UnprefixedAttribute[String]("href", buildUri(location), link.attributes1),
+    link.scope,
+    link.minimizeEmpty,
+    link.child:_*
   )
 
   override def initialize(): Var[PageLocation] = {
