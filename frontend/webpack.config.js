@@ -173,18 +173,18 @@ const prodConfig = {
             }
         }),
         new CompressionPlugin({
-            filename: 'br/[path]',
+            filename: '[path].br',
             algorithm: 'brotliCompress',
-            test: /\.(js|css|html|svg)$/,
+            test: /\.(js|css|html|svg|woff|woff2|eot|ttf)$/,
             compressionOptions: { level: 11 },
             threshold: 10240,
             minRatio: 0.8,
             deleteOriginalAssets: false,
         }),
         new CompressionPlugin({
-            filename: 'gz/[path]',
+            filename: '[path].gz',
             algorithm: 'gzip',
-            test: /\.(js|css|html|svg)$/,
+            test: /\.(js|css|html|svg|woff|woff2|eot|ttf)$/,
             threshold: 10240,
             minRatio: 0.8,
             deleteOriginalAssets: false,

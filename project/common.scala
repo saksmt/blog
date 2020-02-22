@@ -48,7 +48,7 @@ object common {
             "-Ywarn-unused:patvars",
             "-Ywarn-unused:privates",
             "-Ywarn-value-discard"
-          ) ++ (if (!isScalaJSProject.value) Seq("-target:11") else Seq())
+          ) //++ (if (!isScalaJSProject.value) Seq("-target:8") else Seq())
       )
   }
 
