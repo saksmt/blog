@@ -22,21 +22,24 @@
       #navigation-menu {
         a {
           display: block;
-          width: 100%;
           padding: 1rem 2rem;
+          box-sizing: border-box;
         }
       }
 
       #contacts-menu {
         @include cols;
         @include center;
+        @include justify-content(space-around);
 
         li {
-          @include auto-col;
+          @include flex-basis(33%);
+          box-sizing: border-box;
 
-          padding: 0.5rem 1rem;
           a {
-            padding: 0.5rem 1rem;
+            display: block;
+            margin: 0 0.25rem;
+            padding: 0.7rem 0;
           }
         }
       }
@@ -49,13 +52,6 @@
         margin: 1.5rem auto;
       }
     }
-  }
-
-  header.menu-home a {
-    display: block;
-    width: 100%;
-    margin: 1rem;
-    padding: 1rem;
   }
 
   header.menu-home .menu-toggle-button {

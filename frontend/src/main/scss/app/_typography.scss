@@ -1,6 +1,6 @@
-body {
+html {
   font-family: "Hasklig", "Source Code Pro", "Arial", sans-serif;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 a, a:visited {
@@ -9,6 +9,12 @@ a, a:visited {
   text-decoration: inherit;
   font-style: inherit;
 }
+
+h1 { font-size: 1.7rem }
+h2 { font-size: 1.575rem }
+h3 { font-size: 1.45rem }
+h4 { font-size: 1.325rem }
+h5 { font-size: 1.2rem }
 
 * {
   $transition-duration: 100ms;

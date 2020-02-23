@@ -8,7 +8,7 @@
   min-height: 100%;
 
   #menu-wrapper {
-    @include flex-basis(18rem);
+    @include flex-basis(13rem);
     @include flex-shrink(0);
     @include flex-grow(0);
   }
