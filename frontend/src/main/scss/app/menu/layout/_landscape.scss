@@ -51,11 +51,15 @@
     }
   }
 
-  h1.menu-home a {
+  header.menu-home a {
     display: block;
     width: 100%;
     margin: 1rem;
     padding: 1rem;
+  }
+
+  header.menu-home .menu-toggle-button {
+    display: none;
   }
 
   #theme-menu {

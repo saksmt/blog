@@ -27,6 +27,7 @@
   hr.section-separator {
     @include flex-basis(1px);
 
-    margin: 2.5% 0 2.5% 0.5rem;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
   }
 }

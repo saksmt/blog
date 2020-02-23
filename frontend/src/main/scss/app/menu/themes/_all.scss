@@ -32,6 +32,12 @@
         @include brand-icon($fa-var-telegram-plane)
       }
     }
+
+    .menu-home {
+      .menu-toggle-button-icon {
+        @include standard-icon($fa-var-bars)
+      }
+    }
   }
 
   #theme-menu {

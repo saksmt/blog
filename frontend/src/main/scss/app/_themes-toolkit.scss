@@ -1,6 +1,12 @@
 $dark: "#dark:checked ~ #app-wrapper";
 $light: "#light:checked ~ #app-wrapper";
 
+$menu-visible: "#menu-toggle:checked ~ #app-wrapper";
+$menu-invisible: "#menu-toggle:not(:checked) ~ #app-wrapper";
+
+$menu-visible-dark: "#dark:checked ~ #menu-toggle:checked ~ #app-wrapper";
+$menu-visible-light: "#light:checked ~ #menu-toggle:checked ~ #app-wrapper";
+
 $dark-colors-accent-fg: #d7d7f7;
 $dark-colors-link-fg: #cc7832;
 $dark-colors-focus-fg: #a7f7f7;

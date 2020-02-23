@@ -7,7 +7,7 @@
   }
 
   li, h1 {
-    &:hover, a:hover {
+    &:hover, a:hover, header.menu-home label {
       color: $light-colors-accent-fg;
     }
 

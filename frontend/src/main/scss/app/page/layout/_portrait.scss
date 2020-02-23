@@ -1,0 +1,19 @@
+@import "../../grid";
+
+#app {
+  min-height: 100%;
+  @include flexbox;
+  @include flex-flow(column nowrap);
+
+  #content {
+    padding: 0 0.75rem;
+  }
+}
+
+hr.section-separator {
+  width: 80%;
+  max-width: 80%;
+  height: 1px;
+  max-height: 1px;
+  margin: 0 auto;
+}

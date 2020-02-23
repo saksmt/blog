@@ -6,7 +6,7 @@
     box-shadow: #aaa 0 0 1px;
   }
 
-  li, h1 {
+  li, h1, header.menu-home label {
     &:hover {
       color: $dark-colors-accent-fg;
     }

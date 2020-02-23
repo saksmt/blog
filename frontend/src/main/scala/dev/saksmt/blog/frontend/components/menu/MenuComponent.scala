@@ -8,11 +8,16 @@ class MenuComponent(menu: Menu, navigationSchema: NavigationSchema) {
   import menu.mainPage
 
   def build(currentLocation: PageLocation): Renderable = (
-    <h1 class="menu-home">
+    <header class="menu-home">
+      <label class="menu-toggle-button" for="menu-toggle">
+        <span class="menu-toggle-button-icon"></span>
+      </label>
+      <h1>
       {navigationSchema.buildLink(mainPage.location) {
         <a>{mainPage.name}</a>
       }}
-    </h1>
+      </h1>
+    </header>
     <menu id="navigation-menu">
       {
       menu.sections.map { it =>

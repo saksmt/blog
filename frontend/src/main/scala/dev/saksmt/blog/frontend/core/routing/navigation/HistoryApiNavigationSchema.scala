@@ -1,58 +1,28 @@
 package dev.saksmt.blog.frontend.core.routing.navigation
 
 import dev.saksmt.blog.frontend.core.routing.PageLocation
-import mhtml.Var
+import mhtml.Rx
 import org.scalajs.dom.raw.Event
-import org.scalajs.dom.{Node, Window}
+import org.scalajs.dom.Window
 
-import scala.xml.{Elem, UnprefixedAttribute}
+import scala.xml.Elem
 
-class HistoryApiNavigationSchema(window: Window, baseUri: String) extends NavigationSchema {
-  private lazy val currentLocation = Var[PageLocation](buildLocation(window.location.pathname + window.location.search))
+class HistoryApiNavigationSchema(window: Window, locationBuilder: LocationBuilder) extends NavigationSchema {
+  override def buildLink(location: PageLocation)(link: Elem): Elem = locationBuilder.buildLink(location, link) { e =>
+    window.history.pushState(null, "", e.uri)
 
-  override def buildLink(location: PageLocation)(link: Elem): Elem = {
-    val uri = buildUri(location)
-    Elem(link.prefix, link.label, UnprefixedAttribute(
-      "href", uri,
-      UnprefixedAttribute(
-        "mhtml-onmount", (node: Node) => {
-          node.addEventListener("click", (e: Event) => {
-            e.preventDefault()
-            e.stopPropagation()
-            currentLocation := location
-            window.history.pushState(null, "", uri)
-
-            true
-          })
-        }, link.attributes1
-      )
-    ), link.scope, link.minimizeEmpty, link.child:_*)
-  }
-  override def initialize(): Var[PageLocation] = {
-    window.addEventListener("popstate", (_: Event) => {
-      currentLocation := buildLocation(window.location.pathname + window.location.search)
-    })
-    currentLocation
+    e.updateLocation()
+    e.preventDefault()
+    e.stopPropagation()
   }
 
-  private def buildUri(location: PageLocation): String = s"${baseUri}${location.sectionPagePath}/${location.path}".replaceAllLiterally("//", "/").replaceAllLiterally("//", "/")
+  override def initialize(): Rx[PageLocation] = {
+    def uri: String = window.location.pathname + window.location.search
 
-  private def buildLocation(rawUri: String): PageLocation = {
-    val uri = rawUri.stripPrefix(baseUri)
-    scribe.info(s"Building location for: $uri")
-
-    val section = "/" + uri.dropWhile(_ == '/').takeWhile(_ != '/')
-    val page = {
-      val pagePath = uri.stripPrefix(section)
-      if (pagePath == "") {
-        "/"
-      } else {
-        pagePath
-      }
+    locationBuilder.registerLocationSource(uri) { update =>
+      window.addEventListener("popstate", (_: Event) => {
+        update(uri)
+      })
     }
-
-    scribe.info(s"Parsed: section=$section; page=$page")
-
-    PageLocation(section, page)
   }
 }
