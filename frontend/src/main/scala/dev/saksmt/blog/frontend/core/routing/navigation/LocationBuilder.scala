@@ -25,8 +25,7 @@ class LocationBuilderImpl(window: Window, baseUri: String) extends LocationBuild
 
   override def registerLocationSource(initialUri: String)(source: (String => Unit) => Unit): Rx[PageLocation] = {
     source { newUri =>
-      menuToggle.checked = false
-      currentLocation := Some(buildLocation(newUri))
+      updateLocation(buildLocation(newUri))
     }
 
     val initialLocation = buildLocation(initialUri)
@@ -42,7 +41,7 @@ class LocationBuilderImpl(window: Window, baseUri: String) extends LocationBuild
       UnprefixedAttribute(
         "mhtml-onmount", (node: Node) => {
           node.addEventListener("click", (e: Event) => {
-            onClick(new LinkClicked(uri, e.preventDefault, e.stopPropagation, () => currentLocation := Some(location)))
+            onClick(new LinkClicked(uri, e.preventDefault, e.stopPropagation, () => updateLocation(location)))
 
             true
           })
@@ -71,4 +70,9 @@ class LocationBuilderImpl(window: Window, baseUri: String) extends LocationBuild
   }
 
   private def buildUri(location: PageLocation): String = s"${baseUri}${location.sectionPagePath}/${location.path}".replaceAllLiterally("//", "/").replaceAllLiterally("//", "/")
+
+  private def updateLocation(newLocation: PageLocation): Unit = {
+    menuToggle.checked = false
+    currentLocation := Some(newLocation)
+  }
 }
