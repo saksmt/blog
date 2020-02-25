@@ -14,7 +14,7 @@ class BuiltWithPage extends Page("Built with") {
       <li><a href="https://sass-lang.com">SCSS</a></li>
       <li><a href="https://nixos.org/nix/">Nix</a></li>
       <li><a href="https://webpack.js.org">webpack</a></li>
-      <li><a href="https://scala-sbt.org">SBT</a> (shame on me, but <a href="bazel.build">bazel</a> can't into scala.js and <a href="pantsbuild.org">pants</a> don't actuall work at all)</li>
+      <li><a href="https://scala-sbt.org">SBT</a> (shame on me, but <a href="bazel.build">bazel</a> can't into scala.js and <a href="pantsbuild.org">pants</a> don't actually work at all, at least not on NixOS)</li>
     </ul>
     <h1>And brought to you by:</h1>
     <ul>
