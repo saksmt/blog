@@ -1,6 +1,7 @@
 html {
   font-family: "Hasklig", "Source Code Pro", "Arial", sans-serif;
   font-size: 18px;
+  line-height: 1.48;
 }
 
 a, a:visited {
@@ -15,6 +16,20 @@ h2 { font-size: 1.575rem }
 h3 { font-size: 1.45rem }
 h4 { font-size: 1.325rem }
 h5 { font-size: 1.2rem }
+
+li {
+  padding: 0.1rem 0;
+  margin: 0;
+
+  &:first-child {
+    padding: 0;
+  }
+}
+
+ul, ol {
+  margin: 0.4rem 0 1rem;
+  padding: 0 0 0 2rem;
+}
 
 * {
   $transition-duration: 100ms;
