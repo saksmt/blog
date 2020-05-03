@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.CANISTER_PASSWORD }}
           repository: saksmt/blog-frontend
           registry: cloud.canister.io:5000
-          tags: latest,${{ IMAGE_TAG }}
+          tags: latest,${{ env.IMAGE_TAG }}
           add_git_labels: true
           path: frontend
           push: true
