@@ -52,11 +52,11 @@ object common {
 
     project.settings(
       version := {
-        val snapshot = git.gitCurrentTags.value.contains("v" + appVersion)
+        val snapshot = !git.gitCurrentTags.value.contains("v" + appVersion)
         val resultVersion = if (snapshot) {
-          appVersion
+          s"$appVersion-snapshot"
         } else {
-          s"${appVersion}-snapshot"
+          appVersion
         }
 
         val imageTag = if (snapshot) {
