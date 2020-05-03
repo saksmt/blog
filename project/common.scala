@@ -66,7 +66,7 @@ object common {
             .replace("/", "_")
             .replace(":", "_")
 
-          s"${sys.env.getOrElse("buildNumber", "")}.$sanitizedBranchName.$gitCommit"
+          s"${BuildInfo.buildNumber.map(_ + ".").getOrElse("")}$sanitizedBranchName.$gitCommit"
         } else appVersion
 
         println(s"::set-env name=IMAGE_TAG::$imageTag")

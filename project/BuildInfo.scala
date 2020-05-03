@@ -6,8 +6,9 @@ import sbt.Keys.version
 import sbt._
 
 object BuildInfo {
+  val buildNumber: Option[String] = sys.env.get("GITHUB_RUN_NUMBER")
+
   val generator = Def.task {
-    val buildNumber = sys.env.get("GITHUB_RUN_NUMBER")
     val commitDate = git.gitHeadCommitDate.value
       .map(OffsetDateTime.parse(_, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ")))
       .map(_.toInstant.toEpochMilli.toString + "L")
