@@ -9,6 +9,4 @@ val backend = mkProject("backend", ".")
     cats,
     monix,
     supertagged
-  ).settings(
-    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
-)
+  ).withMacroAnnotations()

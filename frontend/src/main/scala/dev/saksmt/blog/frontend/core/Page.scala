@@ -7,5 +7,7 @@ abstract class Page(val title: String) {
 }
 
 object Page {
-  def apply(title: String, content_ : Renderable): Page = new Page(title) { override val content = content_ }
+  def apply(title: String, content_ : Renderable): Page = new Page(title) {
+    override val content = content_
+  }
 }

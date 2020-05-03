@@ -6,10 +6,11 @@ import org.scalajs.dom.Window
 
 import scala.xml.Elem
 
-class SimpleHashNavigationSchema(window: Window, locationBuilder: LocationBuilder) extends NavigationSchema {
+class SimpleHashNavigationSchema(window: Window, locationBuilder: LocationBuilder)
+    extends NavigationSchema {
   override def buildLink(location: PageLocation)(link: Elem): Elem =
     locationBuilder.buildLink(location, link) {
-      Function.const( () )
+      Function.const(())
     }
 
   override def initialize(): Rx[PageLocation] = {

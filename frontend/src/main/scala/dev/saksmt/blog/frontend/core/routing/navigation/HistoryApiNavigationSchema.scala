@@ -7,14 +7,16 @@ import org.scalajs.dom.Window
 
 import scala.xml.Elem
 
-class HistoryApiNavigationSchema(window: Window, locationBuilder: LocationBuilder) extends NavigationSchema {
-  override def buildLink(location: PageLocation)(link: Elem): Elem = locationBuilder.buildLink(location, link) { e =>
-    window.history.pushState(null, "", e.uri)
+class HistoryApiNavigationSchema(window: Window, locationBuilder: LocationBuilder)
+    extends NavigationSchema {
+  override def buildLink(location: PageLocation)(link: Elem): Elem =
+    locationBuilder.buildLink(location, link) { e =>
+      window.history.pushState(null, "", e.uri)
 
-    e.updateLocation()
-    e.preventDefault()
-    e.stopPropagation()
-  }
+      e.updateLocation()
+      e.preventDefault()
+      e.stopPropagation()
+    }
 
   override def initialize(): Rx[PageLocation] = {
     def uri: String = window.location.pathname + window.location.search

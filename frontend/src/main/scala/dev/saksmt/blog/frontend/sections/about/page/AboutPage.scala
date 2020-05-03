@@ -38,12 +38,20 @@ class AboutPage(navigationSchema: NavigationSchema) extends Page("About") {
     <p></p>
     <p>If you need any proofs about lists above you should check:</p>
     <ul>
-      <li>{navigationSchema.buildLink(PageLocation.About("/built-with")) {
+      <li>
+    {
+      navigationSchema.buildLink(PageLocation.About("/built-with")) {
         <a>tools</a>
-      }} this site is build with</li>
-      <li>my {navigationSchema.buildLink(PageLocation.Projects()) {
+      }
+    } this site is build with
+      </li>
+      <li>my 
+    {
+      navigationSchema.buildLink(PageLocation.Projects()) {
         <a>projects</a>
-      }}</li>
+      }
+    }
+      </li>
     </ul>
   )
 }

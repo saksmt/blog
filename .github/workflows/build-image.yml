@@ -1,0 +1,29 @@
+name: Build & publish docker images
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/java@v1
+        with:
+          java-version: 1.8
+
+      - name: build
+        run: sbt buildProd
+
+      - name: build frontend image
+        uses: docker/build-push-action@v1.1.0
+          with:
+            username: ${{ secrets.CANISTER_USERNAME }}
+            password: ${{ secrets.CANISTER_PASSWORD }}
+            repository: saksmt/blog-frontend
+            registry: cloud.canister.io:5000
+            tags: latest,${{ IMAGE_TAG }}
+            add_git_labels: true
+            path: frontend
+            push: true

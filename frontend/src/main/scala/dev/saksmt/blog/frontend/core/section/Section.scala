@@ -10,5 +10,3 @@ trait Section {
   def path: String
   def name: String
 }
-
-

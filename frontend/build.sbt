@@ -1,59 +1,26 @@
 import common._
 import dependencies._
-
-val webpackKey = TaskKey[Unit]("webpack", "")
-val webpackProdKey = TaskKey[Unit]("webpackProd", "")
+import scalajs._
+import webpack._
 
 lazy val frontend = mkProject("frontend", ".")
   .deps(
-    silencer,
     macwire
   )
+  .dependsOn(modules.shared)
   .settings(
     // fucking sbt magic ><
     libraryDependencies ++= Seq(
-      "com.outr" %%% "scribe" % versions.scribe,
+      "com.outr"     %%% "scribe" % versions.scribe,
       "org.scala-js" %%% "scalajs-dom" % versions.jsdom,
-      "in.nvilla" %%% "monadic-html" % versions.mhtml,
+      "in.nvilla"    %%% "monadic-html" % versions.mhtml,
       "com.beachape" %%% "enumeratum" % versions.enumeratum
     ),
-
-    scalaJSLinkerConfig in fullOptJS ~= { _
-      .withModuleKind(ModuleKind.NoModule)
-      .withClosureCompiler(true)
-      .withOptimizer(true)
-      .withSourceMap(true)
-    },
-
-    scalaJSLinkerConfig in fastOptJS ~= { _
-      .withModuleKind(ModuleKind.NoModule)
-      .withClosureCompiler(true)
-      .withOptimizer(true)
-      .withSourceMap(true)
-    },
-
-    scalaJSOptimizerOptions in fullOptJS ~= { _.withUseClosureCompiler(true) },
-    scalaJSOptimizerOptions in fastOptJS ~= { _.withUseClosureCompiler(true) },
-
-    artifactPath in(Compile, fastOptJS) := target.value / "scala.js",
-    artifactPath in(Compile, fullOptJS) := target.value / "scala.js",
-
-    webpackKey := {
-      import sys.process._
-
-      if (Process("npm run webpack", Some(baseDirectory.value)).! != 0) sys.error("npm|webpack failed")
-    },
-    webpackKey := webpackKey.dependsOn(fastOptJS in Compile).value,
-
-    webpackProdKey := {
-      import sys.process._
-
-      if (Process("npm run webpack", Some(baseDirectory.value), "NODE_ENV" -> "production").! != 0) sys.error("npm|webpack failed")
-    },
-    webpackProdKey := webpackProdKey.dependsOn(fullOptJS in Compile).value
+    artifactPath in (Compile, fastOptJS) := target.value / "scala.js",
+    artifactPath in (Compile, fullOptJS) := target.value / "scala.js"
   )
-  .enablePlugins(ScalaJSPlugin)
-
+  .asScalaJsLib()
+  .withWebpack()
 
 addCommandAlias("build", "webpack")
 addCommandAlias("buildProd", "webpackProd")

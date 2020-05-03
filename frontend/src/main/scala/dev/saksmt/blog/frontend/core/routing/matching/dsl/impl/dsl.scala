@@ -14,10 +14,11 @@ object / {
 }
 
 object -> {
-  def unapply(pageLocation: PageLocation): Option[(String, Path)] = Some((pageLocation.sectionPagePath, new Path(pageLocation.path)))
+  def unapply(pageLocation: PageLocation): Option[(String, Path)] =
+    Some((pageLocation.sectionPagePath, new Path(pageLocation.path)))
 }
 
-class Path private[impl](private[impl] val path: String) extends AnyVal
+class Path private[impl] (private[impl] val path: String) extends AnyVal
 object Path {
   val Root = new Path("/")
 }

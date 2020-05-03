@@ -4,4 +4,5 @@ import dev.saksmt.blog.frontend.config.AppConfig
 
 trait ConfigModule {
   def config: AppConfig
+  def isDeveloper: Boolean
 }

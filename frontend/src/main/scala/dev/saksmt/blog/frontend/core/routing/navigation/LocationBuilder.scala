@@ -8,10 +8,12 @@ import org.scalajs.dom.raw.Event
 
 import scala.xml.{Elem, UnprefixedAttribute}
 
-class LinkClicked private[navigation](val uri: String,
-                                      val preventDefault: () => Unit,
-                                      val stopPropagation: () => Unit,
-                                      val updateLocation: () => Unit)
+class LinkClicked private[navigation] (
+    val uri: String,
+    val preventDefault: () => Unit,
+    val stopPropagation: () => Unit,
+    val updateLocation: () => Unit
+)
 
 trait LocationBuilder {
   def registerLocationSource(initialUri: String)(source: (String => Unit) => Unit): Rx[PageLocation]
@@ -23,10 +25,10 @@ class LocationBuilderImpl(window: Window, baseUri: String) extends LocationBuild
   private lazy val menuToggle = window.document.querySelector("#menu-toggle").asInstanceOf[Input]
   private val currentLocation = Var(Option.empty[PageLocation])
 
-  override def registerLocationSource(initialUri: String)(source: (String => Unit) => Unit): Rx[PageLocation] = {
-    source { newUri =>
-      updateLocation(buildLocation(newUri))
-    }
+  override def registerLocationSource(
+      initialUri: String
+  )(source: (String => Unit) => Unit): Rx[PageLocation] = {
+    source(newUri => updateLocation(buildLocation(newUri)))
 
     val initialLocation = buildLocation(initialUri)
     currentLocation := Some(initialLocation)
@@ -36,18 +38,35 @@ class LocationBuilderImpl(window: Window, baseUri: String) extends LocationBuild
 
   override def buildLink(location: PageLocation, link: Elem)(onClick: LinkClicked => Unit): Elem = {
     val uri = buildUri(location)
-    Elem(link.prefix, link.label, UnprefixedAttribute(
-      "href", uri,
+    Elem(
+      link.prefix,
+      link.label,
       UnprefixedAttribute(
-        "mhtml-onmount", (node: Node) => {
-          node.addEventListener("click", (e: Event) => {
-            onClick(new LinkClicked(uri, e.preventDefault, e.stopPropagation, () => updateLocation(location)))
+        "href",
+        uri,
+        UnprefixedAttribute(
+          "mhtml-onmount",
+          (node: Node) => {
+            node.addEventListener("click", (e: Event) => {
+              onClick(
+                new LinkClicked(
+                  uri,
+                  e.preventDefault,
+                  e.stopPropagation,
+                  () => updateLocation(location)
+                )
+              )
 
-            true
-          })
-        }, link.attributes1
-      )
-    ), link.scope, link.minimizeEmpty, link.child:_*)
+              true
+            })
+          },
+          link.attributes1
+        )
+      ),
+      link.scope,
+      link.minimizeEmpty,
+      link.child: _*
+    )
   }
 
   private def buildLocation(rawUri: String): PageLocation = {
@@ -69,7 +88,10 @@ class LocationBuilderImpl(window: Window, baseUri: String) extends LocationBuild
     PageLocation(section, page)
   }
 
-  private def buildUri(location: PageLocation): String = s"${baseUri}${location.sectionPagePath}/${location.path}".replaceAllLiterally("//", "/").replaceAllLiterally("//", "/")
+  private def buildUri(location: PageLocation): String =
+    s"${baseUri}${location.sectionPagePath}/${location.path}"
+      .replace("//", "/")
+      .replace("//", "/")
 
   private def updateLocation(newLocation: PageLocation): Unit = {
     menuToggle.checked = false

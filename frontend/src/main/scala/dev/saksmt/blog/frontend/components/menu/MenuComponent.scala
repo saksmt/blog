@@ -13,13 +13,15 @@ class MenuComponent(menu: Menu, navigationSchema: NavigationSchema) {
         <span class="menu-toggle-button-icon"></span>
       </label>
       <h1>
-      {navigationSchema.buildLink(mainPage.location) {
+    {
+      navigationSchema.buildLink(mainPage.location) {
         <a>{mainPage.name}</a>
-      }}
+      }
+    }
       </h1>
     </header>
     <menu id="navigation-menu">
-      {
+    {
       menu.sections.map { it =>
         val selectedClass =
           if (currentLocation.sectionPagePath == it.location.sectionPagePath) {
@@ -29,12 +31,14 @@ class MenuComponent(menu: Menu, navigationSchema: NavigationSchema) {
           }
 
         <li>
-          {navigationSchema.buildLink(it.location) {
+          {
+          navigationSchema.buildLink(it.location) {
             <a class={selectedClass}>{it.name}</a>
-          }}
+          }
+        }
         </li>
       }
-      }
+    }
     </menu>
     <hr/>
     <menu id="contacts-menu">
