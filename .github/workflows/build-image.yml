@@ -18,12 +18,12 @@ jobs:
 
       - name: build frontend image
         uses: docker/build-push-action@v1.1.0
-          with:
-            username: ${{ secrets.CANISTER_USERNAME }}
-            password: ${{ secrets.CANISTER_PASSWORD }}
-            repository: saksmt/blog-frontend
-            registry: cloud.canister.io:5000
-            tags: latest,${{ IMAGE_TAG }}
-            add_git_labels: true
-            path: frontend
-            push: true
+        with:
+          username: ${{ secrets.CANISTER_USERNAME }}
+          password: ${{ secrets.CANISTER_PASSWORD }}
+          repository: saksmt/blog-frontend
+          registry: cloud.canister.io:5000
+          tags: latest,${{ IMAGE_TAG }}
+          add_git_labels: true
+          path: frontend
+          push: true
