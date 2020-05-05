@@ -1,0 +1,21 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: blog
+  namespace: blog
+spec:
+  hosts:
+    - saksmt.dev
+    - smt.run
+  gateways:
+    - blog-gw
+  http:
+    - route:
+        - destination:
+            host: blog-frontend
+            port:
+              number: 80
+      match:
+        - uri:
+            prefix: /

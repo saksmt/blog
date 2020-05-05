@@ -9,7 +9,7 @@ object dependencies {
     val scribe = "2.7.10"
     val enumeratum = "1.5.13"
 
-    val circe = "0.11.1"
+    val circe = "0.13.0"
     val enumeratumCirce = "1.5.22"
 
     val jsdom = "0.9.8"
@@ -24,12 +24,14 @@ object dependencies {
 
     val derevo = "0.11.2"
     val supertagged = "1.5"
+    val monocle = "2.0.0"
   }
 
   case class Dep(moduleIds: ModuleID*)
 
   implicit class DependenciesProjectPimp(val project: Project) extends AnyVal {
-    def deps(deps: Dep*): Project = project.settings(libraryDependencies ++= deps.flatMap(_.moduleIds))
+    def deps(deps: Dep*): Project =
+      project.settings(libraryDependencies ++= deps.flatMap(_.moduleIds))
   }
 
   val macwire = Dep("com.softwaremill.macwire" %% "macros" % versions.macwire)
@@ -44,7 +46,7 @@ object dependencies {
 
   val tethys = Dep(
     "com.tethys-json" %% "tethys" % versions.tethys,
-    "org.manatki" %% "derevo-tethys" % versions.derevo
+    "org.manatki"     %% "derevo-tethys" % versions.derevo
   )
 
   val cats = Dep(
@@ -55,4 +57,14 @@ object dependencies {
   val monix = Dep("io.monix" %% "monix" % versions.monix)
 
   val supertagged = Dep("org.rudogma" %% "supertagged" % versions.supertagged)
+
+  object monocle {
+    val core = Dep("com.github.julien-truffaut" %% "monocle-core" % versions.monocle)
+  }
+
+  object circe {
+    val core = Dep("io.circe"   %% "circe-core" % versions.circe)
+    val yaml = Dep("io.circe"   %% "circe-yaml" % versions.circe)
+    val optics = Dep("io.circe" %% "circe-optics" % versions.circe)
+  }
 }
