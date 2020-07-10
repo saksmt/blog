@@ -4,9 +4,11 @@ import dependencies._
 val backend = mkProject("backend", ".")
   .deps(
     finch,
+    tapir,
     tethys,
-
     cats,
     monix,
     supertagged
-  ).withMacroAnnotations()
+  )
+  .dependsOn(modules.shared)
+  .withMacroAnnotations()

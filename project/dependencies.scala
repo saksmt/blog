@@ -16,6 +16,7 @@ object dependencies {
     val mhtml = "0.4.0"
 
     val finch = "0.32.1"
+    val tapir = "0.14.5"
 
     val tethys = "0.11.0"
 
@@ -42,6 +43,13 @@ object dependencies {
 
   val finch = Dep(
     "com.github.finagle" %% "finchx-core" % versions.finch
+  )
+
+  val tapir = Dep(
+    "com.softwaremill.sttp.tapir" %% "tapir-core" % versions.tapir,
+    "com.softwaremill.sttp.tapir" %% "tapir-json-tethys" % versions.tapir,
+    "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs" % versions.tapir,
+    "com.softwaremill.sttp.tapir" %% "tapir-openapi-circe-yaml" % versions.tapir
   )
 
   val tethys = Dep(
