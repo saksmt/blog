@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "flexboxgrid-sass": "^8.0.5",
-    "highlight.js": "^9.18.1",
+    "highlight.js": "^10.4.1",
     "sass-flex-mixin": "^1.0.3"
   },
   "devDependencies": {
